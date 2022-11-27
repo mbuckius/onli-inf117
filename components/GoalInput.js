@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SelectDropdown from 'react-native-select-dropdown';
 import { View, Image, TextInput, Text, Button, StyleSheet, Modal, TouchableHighlight } from 'react-native';
 
 
@@ -6,6 +7,7 @@ const GoalInput = props => {
     const [continuous, setContinuous] = useState(false);
     const [enteredGoal, setEnteredGoal] = useState('');
     const [enteredDescription, setEnteredDescription] = useState('');
+    const [whoGoalIsFor, setWhoGoalIsFor] = useState("");
 
     const userGoalInputHandler = enteredText => {
         setEnteredGoal(enteredText);
@@ -16,10 +18,11 @@ const GoalInput = props => {
     }
 
     const addGoalHandler = () => {
-        if (enteredGoal.length) {
-            props.onAddGoal(enteredGoal, enteredDescription, continuous);
+        if (enteredGoal.length && whoGoalIsFor.length) {
+            props.onAddGoal(enteredGoal, enteredDescription, continuous, whoGoalIsFor);
             setEnteredGoal('');
             setEnteredDescription('');
+            setWhoGoalIsFor('');
         }
         else {
             alert("Goal must have a title");
@@ -42,40 +45,52 @@ const GoalInput = props => {
                 {/* <Image style={styles.addGoalImage} source={require('../assets/addGoal.png')} /> */}
                 
                 <View style={styles.infoContainer}>
-                    <Text>1. Select your goal type</Text>
+                    <View style={styles.section}>
+                        <Text style={styles.subtitle}>1. Select your goal type</Text>
 
-                    <TouchableHighlight style={styles.goalType} onPress={setGoalToOneTime}>
-                        <View>
-                            <Text>One Time Goal</Text>
-                            <Text>For goals with a deadline</Text>
-                        </View>
-                        
-                    </TouchableHighlight>
+                        <TouchableHighlight style={styles.goalType} onPress={setGoalToOneTime}>
+                            <View>
+                                <Text>One Time Goal</Text>
+                                <Text>For goals with a deadline</Text>
+                            </View>
+                        </TouchableHighlight>
 
-                    <TouchableHighlight style={styles.goalType} onPress={setGoalToContinuous}>
-                        <View>
-                            <Text>Continuous Goal</Text>
-                            <Text>For forming new habits</Text>
+                        <TouchableHighlight style={styles.goalType} onPress={setGoalToContinuous}>
+                            <View>
+                                <Text>Continuous Goal</Text>
+                                <Text>For forming new habits</Text>
+                            </View>
+                        </TouchableHighlight>
+                    </View>
+                   
+                    <View style={styles.section}>
+                        <Text style={styles.subtitle}>2. Set up your goal</Text>
+
+                        <TextInput
+                        placeholder="name your goal"
+                        style={styles.textInputContainer}
+                        onChangeText={userGoalInputHandler}
+                        value={enteredGoal}
+                        />
+
+                        <TextInput
+                        placeholder="describe the goal (optional)"
+                        style={styles.descInputContainer}
+                        onChangeText={userDescInputHandler}
+                        value={enteredDescription}
+                        />
+
+                        <View style={styles.selectPerson}>
+                            <SelectDropdown 
+                                data = {["me", "my partner"]}
+                                onSelect={(selectedItem) => {
+                                    setWhoGoalIsFor(selectedItem);
+                                }}
+                                defaultButtonText = "Who is this goal for?"
+                            />
                         </View>
-                        
-                    </TouchableHighlight>
+                    </View>
                     
-                    <Text>2. Set up your goal</Text>
-
-                    <TextInput
-                    placeholder="name your goal"
-                    style={styles.textInputContainer}
-                    onChangeText={userGoalInputHandler}
-                    value={enteredGoal}
-                    />
-
-                    <TextInput
-                    placeholder="describe the goal (optional)"
-                    style={styles.descInputContainer}
-                    onChangeText={userDescInputHandler}
-                    value={enteredDescription}
-                    />
-
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
                             <Button color='red' title="Cancel" onPress={props.onCancel} />
@@ -104,7 +119,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginVertical: 10,
         backgroundColor: "#FFE5D7",
-        width: "95%"
+        width: "100%"
     },
 
     title: {
@@ -117,7 +132,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         marginBottom: 10,
-        width: '80%'
+        width: '100%'
     },
 
     descInputContainer: {
@@ -125,7 +140,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         marginBottom: 10,
-        width: '80%'
+        width: '100%'
     },
 
     firstContainer: {
@@ -150,6 +165,24 @@ const styles = StyleSheet.create({
 
     button: {
         width: '40%'
+    },
+
+    section: {
+        width: "100%",
+        padding: 30,
+        alignItems: "center",
+        alignSelf: 'center',
+        justifyContent: 'center',
+    },
+
+    selectPerson: {
+        marginTop: 20,
+        alignSelf: 'center',
+    },
+
+    subtitle: {
+        fontSize: 18,
+        marginBottom: 10
     }
 });
 
