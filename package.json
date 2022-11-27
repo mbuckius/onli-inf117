@@ -26,5 +26,19 @@
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!@react-native|react-native)"
+     ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+     ]
+  },
   "private": true
 }
