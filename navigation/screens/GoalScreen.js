@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, FlatList, ImageBackground } from 'react-native';
+import { Image, StyleSheet, Text, View, Button, TextInput, FlatList, ImageBackground } from 'react-native';
 
 // components
 
@@ -40,13 +40,17 @@ export default function GoalScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.mainContainer} textAlign="center">
       <ImageBackground source = {image} style = {styles.image}>
 
         <View style = {styles.buttonView}>
             <Button title="Add New Goal" onPress={() => setIsModalVisible(true)} />
         </View>
 
+        <Image 
+          style = {{width: 100, height: 100, alignSelf: 'center'}}
+          source = {require("Stars.png")}
+        />
         <GoalInput visible={ismodalVisable} onAddGoal={addUserGoalHandler} onCancel={()=>setIsModalVisible(false)} />
     
         {
@@ -57,7 +61,7 @@ export default function GoalScreen({ navigation }) {
             {
               myGoals.length ?
                 <View>
-                  <Text>Your Goals</Text>
+                  <Text style={{paddingLeft: 20, paddingTop:20}}>Your Goals</Text>
                   <FlatList
                     style={styles.scrollContainer}
                     data={myGoals}
@@ -79,7 +83,7 @@ export default function GoalScreen({ navigation }) {
             {
               theirGoals.length ?
               <View>
-                <Text>Your Partner's Goals</Text>
+                <Text style={{paddingLeft: 20, paddingTop:20}}>Your Partner's Goals</Text>
                 <FlatList
                   style={styles.scrollContainer}
                   data={theirGoals}
@@ -114,15 +118,18 @@ const styles = StyleSheet.create({
     },
     mainContainer: {
       height: "100%",
-      width: "100%",
+      width: "100%", 
+      justifyContent: 'center',
+      textAlign: 'center',
+      alignContent: 'center'
       // backgroundColor: "#E2E3F4",
     },
     image: {
-      flex: 1,
-      justifyContent: 'center'
+      flex: 1
     },
     buttonView:{
-      alignItems:'center'
+      alignItems:'center',
+      paddingTop: 20
     },
     setColorWhite: {
       color: '#e961e63'
