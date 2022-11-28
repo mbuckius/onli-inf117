@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 
 export default function MapScreen({ navigation }) {
-    const image = { uri: "https://storage.googleapis.com/subtlepatterns-production/designers/subtlepatterns/uploads/moroccan-flower-dark.png"};
+    const image = require("Goals.png");
 
     return (
         <ImageBackground source={image} style = {styles.container}>
