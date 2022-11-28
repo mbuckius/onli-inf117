@@ -183,11 +183,13 @@ const styles = StyleSheet.create({
     },
 
     infoContainer: {
+       
         width: "100%",
         padding: 30,
         alignItems: "center",
         alignSelf: 'center',
         justifyContent: 'center',
+        marginBottom: 200,
     },
 
     buttonContainer: {
