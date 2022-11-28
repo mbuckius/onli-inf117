@@ -7,7 +7,7 @@ import GoalItem from '../../components/GoalItem';
 import GoalInput from '../../components/GoalInput'
 
 export default function GoalScreen({ navigation }) {
-  const image = { uri: "https://storage.googleapis.com/subtlepatterns-production/designers/subtlepatterns/uploads/moroccan-flower-dark.png"};
+  const image = require("Goals.png");
   const [goals, setGoals] = useState([]);
   const [myGoals, setMyGoals] = useState([]);
   const [theirGoals, setTheirGoals] = useState([]);
