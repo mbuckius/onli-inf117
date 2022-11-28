@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 
 
 export default function MapScreen({ navigation }) {
-    const image = require("../../Goals.png");
+    const image = require("../../assets/Goals.png");
     return (
         <ImageBackground source={image} style = {styles.container}>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>

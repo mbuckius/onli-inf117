@@ -49,7 +49,7 @@ const GoalInput = props => {
                 <Text style={styles.title}>Add Goal</Text>
                 <Image 
                             style = {{width: 50, height: 50}}
-                            source = {require("Chart.png")}
+                            source = {require("../assets/Chart.png")}
                             />
                 {/* <Image style={styles.addGoalImage} source={require('../assets/addGoal.png')} /> */}
                 <ScrollView style = {{width:'100%'}}>
@@ -61,7 +61,7 @@ const GoalInput = props => {
                             <View style={{flexDirection:'row'}}>
                                 <Image 
                                     style = {{width: 40, height: 40}}
-                                    source = {require("Calendar.png")}></Image>
+                                    source = {require("../assets/Calendar.png")}></Image>
                                     <View style={{padding: 10, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start'}}>
                                         <Text style={{paddingLeft: 5, alignSelf: 'center', fontWeight: '700'}}>One Time Goal</Text>
                                         <Text style={{paddingLeft: 5}}>For goals with a deadline</Text>
@@ -73,7 +73,7 @@ const GoalInput = props => {
                             <View style={{flexDirection:'row'}}>
                                 <Image 
                                     style = {{width: 40, height: 40}}
-                                    source = {require("Continuous.png")}></Image>
+                                    source = {require("../assets/Continuous.png")}></Image>
                                     <View style={{padding: 10, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start'}}>
                                         <Text style={{paddingLeft: 5, alignSelf: 'center', fontWeight: '700'}}>Continuous Goal</Text>
                                         <Text style={{paddingLeft: 5}}>For forming new habits</Text>
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer: {
-        width: '70%',
+        width: '80%',
         flexDirection: 'row',
         justifyContent: 'space-evenly'
     },

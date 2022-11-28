@@ -7,7 +7,7 @@ import GoalItem from '../../components/GoalItem';
 import GoalInput from '../../components/GoalInput'
 
 export default function GoalScreen({ navigation }) {
-  const image = require("../../Goals.png");
+  const image = require("../../assets/Goals.png");
   
   const [goals, setGoals] = useState([]);
   const [myGoals, setMyGoals] = useState([]);
@@ -50,7 +50,7 @@ export default function GoalScreen({ navigation }) {
 
         <Image 
           style = {{width: 100, height: 100, alignSelf: 'center'}}
-          source = {require("Stars.png")}
+          source = {require("../../assets/Stars.png")}
         />
         <GoalInput visible={ismodalVisable} onAddGoal={addUserGoalHandler} onCancel={()=>setIsModalVisible(false)} />
     
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     },
     buttonView:{
       alignItems:'center',
-      marginTop: 30
+      marginTop: 80
     },
     setColorWhite: {
       color: '#e961e63'
