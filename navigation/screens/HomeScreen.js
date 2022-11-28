@@ -3,8 +3,7 @@ import { View, Text, ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
-    //const image = { uri: "https://images.app.goo.gl/6fWwLvB9hnuzgihv8"};
-    const image = { uri: "https://storage.googleapis.com/subtlepatterns-production/designers/subtlepatterns/uploads/moroccan-flower-dark.png"};
+    const image = require("Goals.png");
 
     return (
         <ImageBackground source={image} style = {styles.container}>
