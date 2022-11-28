@@ -3,7 +3,7 @@ import { View, Text, ImageBackground } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
-    const image = require("Goals.png");
+    const image = require("../../Goals.png");
 
     return (
         <ImageBackground source={image} style = {styles.container}>

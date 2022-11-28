@@ -7,7 +7,8 @@ import GoalItem from '../../components/GoalItem';
 import GoalInput from '../../components/GoalInput'
 
 export default function GoalScreen({ navigation }) {
-  const image = require("Goals.png");
+  const image = require("../../Goals.png");
+  
   const [goals, setGoals] = useState([]);
   const [myGoals, setMyGoals] = useState([]);
   const [theirGoals, setTheirGoals] = useState([]);
@@ -55,16 +56,36 @@ export default function GoalScreen({ navigation }) {
     
         {
           (myGoals.length || theirGoals.length) ?
-
-          
-          <View>
-            {
-              myGoals.length ?
-                <View>
-                  <Text style={{paddingLeft: 20, paddingTop:20}}>Your Goals</Text>
+            <View style={styles.goalsContainer}>
+              {
+                myGoals.length ?
+                  <View style={styles.myGoalsContainer}>
+                    <Text>Your Goals</Text>
+                    <FlatList
+                      style={styles.scrollContainer}
+                      data={myGoals}
+                      keyExtractor={(item, index) => item.id}
+                      renderItem={itemData =>
+                        <GoalItem 
+                          title={itemData.item.value} 
+                          id={itemData.item.id} 
+                          description={itemData.item.description} 
+                          continuous={itemData.item.continuous} 
+                          onDelete={removeMyGoalHandler} 
+                        />}
+                    />
+                  </View>
+                  :
+                  <Text style={styles.myGoalsContainer}>There are no goals yet for you</Text>
+              }
+              
+              {
+                theirGoals.length ?
+                <View style={styles.theirGoalsContainer}>
+                  <Text>Your Partner's Goals</Text>
                   <FlatList
                     style={styles.scrollContainer}
-                    data={myGoals}
+                    data={theirGoals}
                     keyExtractor={(item, index) => item.id}
                     renderItem={itemData =>
                       <GoalItem 
@@ -72,40 +93,19 @@ export default function GoalScreen({ navigation }) {
                         id={itemData.item.id} 
                         description={itemData.item.description} 
                         continuous={itemData.item.continuous} 
-                        onDelete={removeMyGoalHandler} 
+                        onDelete={removeTheirGoalHandler} 
                       />}
                   />
                 </View>
                 :
-                <Text style={styles.emptyMessage}>There are no goals yet for you</Text>
-            }
-            
-            {
-              theirGoals.length ?
-              <View>
-                <Text style={{paddingLeft: 20, paddingTop:20}}>Your Partner's Goals</Text>
-                <FlatList
-                  style={styles.scrollContainer}
-                  data={theirGoals}
-                  keyExtractor={(item, index) => item.id}
-                  renderItem={itemData =>
-                    <GoalItem 
-                      title={itemData.item.value} 
-                      id={itemData.item.id} 
-                      description={itemData.item.description} 
-                      continuous={itemData.item.continuous} 
-                      onDelete={removeTheirGoalHandler} 
-                    />}
-                />
-              </View>
-              :
-              <Text style={styles.emptyMessage}>There are no goals yet for your partner</Text>
-            }
-            
-          </View>
+                <Text style={styles.theirGoalsContainer}>There are no goals yet for your partner</Text>
+              }
+              
+            </View>
           :
             <Text style={[styles.emptyMessage, styles.setColorWhite]}>You don't have any goals yet. Sharing experiences together shortens the distance.</Text>
         }
+
       </ImageBackground>
     </View>
   );
@@ -125,11 +125,12 @@ const styles = StyleSheet.create({
       // backgroundColor: "#E2E3F4",
     },
     image: {
-      flex: 1
+      flex: 1,
+      justifyContent: 'center',
     },
     buttonView:{
       alignItems:'center',
-      paddingTop: 20
+      marginTop: 30
     },
     setColorWhite: {
       color: '#e961e63'
@@ -141,5 +142,25 @@ const styles = StyleSheet.create({
       position: "flex",
       textAlign: "center",
       color: 'white'
-    }
+    },
+
+    goalsContainer: {
+      height: '90%',
+      width: '90%',
+      alignSelf: 'center',
+      
+      // backgroundColor: 'yellow'
+    },
+
+    myGoalsContainer: {
+      // backgroundColor: 'red',
+      height: '45%',
+      margin: 5,
+      overflow: 'scroll'
+    },
+
+    theirGoalsContainer: {
+      height: '45%',
+      margin: 5,
+    },
   });
