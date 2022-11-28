@@ -150,11 +150,14 @@ const styles = StyleSheet.create({
       // backgroundColor: 'red',
       height: '45%',
       margin: 5,
-      overflow: 'scroll'
+      overflow: 'scroll',
+      textAlign: 'center'
     },
 
     theirGoalsContainer: {
       height: '45%',
       margin: 5,
+      overflow: 'scroll',
+      textAlign: 'center'
     },
   });
