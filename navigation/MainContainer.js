@@ -10,7 +10,7 @@ import MapScreen from './screens/MapScreen';
 
 //Screen names
 const homeName = "Home";
-const goalName = "Goal";
+const goalName = "Goals";
 const mapName = "Map";
 
 const Tab = createBottomTabNavigator();
@@ -45,6 +45,9 @@ function MainContainer() {
                 labelStyle: { paddingBottom: 10, fontSize: 10 },
                 style: { padding: 10, height: 70}
               },
+            
+            headerShown: true,
+            headerTransparent: true,
           })}
           >
   

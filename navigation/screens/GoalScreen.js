@@ -127,10 +127,11 @@ const styles = StyleSheet.create({
     image: {
       flex: 1,
       justifyContent: 'center',
+      alignContent: 'center',
     },
     buttonView:{
       alignItems:'center',
-      marginTop: 80
+      marginTop: 200,
     },
     setColorWhite: {
       color: '#e961e63'
